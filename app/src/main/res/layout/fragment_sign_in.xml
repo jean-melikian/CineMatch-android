@@ -2,8 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cinematching.application.controllers.fragments.SignInFragment"
-    tools:showIn="@layout/activity_login">
+    android:padding="@dimen/activity_horizontal_margin"
+    android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+    tools:context="com.cinematching.application.controllers.fragments.login.SignInFragment">
 
     <LinearLayout
         android:id="@+id/layout_sign_in_form"
@@ -66,9 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="42dp"
-            android:text="@string/action_forgotten_password"
-
-            />
+            android:text="@string/action_forgotten_password" />
 
         <Button
             android:id="@+id/btn_sign_up"
