@@ -12,7 +12,8 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:layout_width="match_parent"
-            android:layout_height="200dp" />
+            android:layout_height="200dp"
+            android:id="@+id/userInfo_image"/>
 
         <RelativeLayout
             android:id="@+id/userInfo_labels"
@@ -94,7 +95,8 @@
         <android.support.v7.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp">
+            android:paddingTop="15dp"
+            android:id="@+id/userInfo_moviesList">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
