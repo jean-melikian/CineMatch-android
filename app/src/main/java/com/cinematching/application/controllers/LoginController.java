@@ -6,7 +6,5 @@ package com.cinematching.application.controllers;
 
 public interface LoginController {
 
-    void switchToSignIn();
 
-    void switchToSignUp();
 }

@@ -9,10 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cinematching.application.R;
-import com.cinematching.application.controllers.LoginActivity;
 import com.cinematching.application.controllers.fragments.BaseFragment;
-
-import butterknife.OnClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,10 +42,5 @@ public class SignInFragment extends BaseFragment {
     @Override
     public void setFragmentTitle(String fragmentTitle) {
         SignInFragment.fragmentTitle = fragmentTitle;
-    }
-
-    @OnClick(R.id.btn_sign_up)
-    public void onGoSignUpFragmentButtonClicked() {
-        ((LoginActivity) getActivity()).switchToSignUp();
     }
 }

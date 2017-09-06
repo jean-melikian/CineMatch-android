@@ -53,29 +53,20 @@
 
         <Button
             android:id="@+id/btn_email_sign_in"
-            style="?android:textAppearanceSmall"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:text="@string/action_sign_in" />
 
         <Button
             android:id="@+id/btn_forgotten_password"
             style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginTop="42dp"
             android:text="@string/action_forgotten_password" />
 
-        <Button
-            android:id="@+id/btn_sign_up"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/action_sign_up" />
     </LinearLayout>
 
 

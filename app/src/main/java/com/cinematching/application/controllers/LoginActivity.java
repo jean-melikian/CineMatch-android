@@ -59,16 +59,6 @@ public class LoginActivity extends AppCompatActivity implements LoginController 
         tabLayout.setupWithViewPager(mViewPager);
     }
 
-    @Override
-    public void switchToSignIn() {
-        mViewPager.setCurrentItem(0, true);
-    }
-
-    @Override
-    public void switchToSignUp() {
-        mViewPager.setCurrentItem(1, true);
-    }
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.
