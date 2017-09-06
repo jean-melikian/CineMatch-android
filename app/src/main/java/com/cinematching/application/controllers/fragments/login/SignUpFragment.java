@@ -2,15 +2,18 @@ package com.cinematching.application.controllers.fragments.login;
 
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.cinematching.application.R;
+import com.cinematching.application.controllers.MainActivity;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 
 import java.text.SimpleDateFormat;
@@ -19,6 +22,7 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -31,6 +35,9 @@ public class SignUpFragment extends BaseFragment implements SignUpController {
 
     @BindView(R.id.field_birthdate)
     EditText fieldBirthdate;
+
+    @BindView(R.id.btn_email_sign_up)
+    Button buttonEmailSignUp;
 
     private DatePickerDialog.OnDateSetListener dateSetListener;
 
@@ -81,7 +88,7 @@ public class SignUpFragment extends BaseFragment implements SignUpController {
     }
 
     private void updateBirthdateField() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
+        String myFormat = "dd/MM/yyyy"; //In which you need put here
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.FRANCE);
 
         fieldBirthdate.setText(sdf.format(birthdate.getTime()));
@@ -95,6 +102,12 @@ public class SignUpFragment extends BaseFragment implements SignUpController {
     @Override
     public void setFragmentTitle(String fragmentTitle) {
         SignUpFragment.fragmentTitle = fragmentTitle;
+    }
+
+    @OnClick(R.id.btn_email_sign_up)
+    public void onEmailSignUpButtonClicked() {
+        startActivity(new Intent(getActivity(), MainActivity.class));
+        getActivity().finish();
     }
 
     @Override
