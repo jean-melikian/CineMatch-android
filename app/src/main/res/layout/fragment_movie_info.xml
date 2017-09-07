@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.AppCompatImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:id="@+id/movieInfo_image"/>
+
+        <RelativeLayout
+            android:id="@+id/movieInfo_labels"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/movieInfo_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Title"
+                android:gravity="center"
+                android:textColor="@color/colorPrimary"
+                android:textSize="38sp" />
+
+
+            <TextView
+                android:id="@+id/movieInfo_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieInfo_title"
+                android:paddingTop="15dp"
+                android:textSize="19dp"
+                android:text="Date" />
+
+
+            <TextView
+                android:id="@+id/movieInfo_genres"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieInfo_date"
+                android:paddingTop="15dp"
+                android:text="Genres" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/movieInfo_genres"
+                android:id="@+id/movieInfo_synopsisLabel"
+                android:layout_marginTop="15dp"
+                android:text="Synopsis :"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_below="@+id/movieInfo_synopsisLabel"
+                android:id="@+id/movieInfo_synopsisInput"
+                android:layout_marginTop="15dp"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/movieInfo_addButton"
+                android:layout_below="@+id/movieInfo_synopsisInput"
+                android:text="Add to Watchlist"
+                android:background="@android:color/holo_green_light"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+</FrameLayout>
