@@ -3,44 +3,20 @@ package com.cinematching.application.models;
 import java.util.Date;
 
 /**
- * Created by Jean-Christophe Melikian on 06/09/2017.
+ * Created by meryl on 06/09/2017.
  */
 
 public class User {
-
-    private long id;
-
     private String nickname;
-
     private String firstname;
-
     private String lastname;
-
-    private String email;
-
-    private String password;
-
+    private String city;
+    private String country;
     private Date birthdate;
-
-    public User() {
-    }
-
-    public User(long id, String nickname, String firstname, String lastname, String email, String password) {
-        this.id = id;
-        this.nickname = nickname;
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.email = email;
-        this.password = password;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private String zipcode;
+    private String email;
+    private int note;
+    private String contact;
 
     public String getNickname() {
         return nickname;
@@ -66,6 +42,38 @@ public class User {
         this.lastname = lastname;
     }
 
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public Date getBirthdate() {
+        return birthdate;
+    }
+
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+
+    public String getZipcode() {
+        return zipcode;
+    }
+
+    public void setZipcode(String zipcode) {
+        this.zipcode = zipcode;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -74,13 +82,19 @@ public class User {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public int getNote() {
+        return note;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setNote(int note) {
+        this.note = note;
     }
 
+    public String getContact() {
+        return contact;
+    }
 
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
 }
