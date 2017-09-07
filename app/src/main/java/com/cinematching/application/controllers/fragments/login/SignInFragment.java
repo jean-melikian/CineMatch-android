@@ -1,17 +1,22 @@
 package com.cinematching.application.controllers.fragments.login;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.cinematching.application.R;
+import com.cinematching.application.controllers.MainActivity;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
@@ -22,6 +27,9 @@ public class SignInFragment extends BaseFragment implements SignInController {
     private static String fragmentTitle = "Sign in";
 
     private Unbinder unbinder;
+
+    @BindView(R.id.btn_email_sign_in)
+    Button buttonEmailSignIn;
 
     public SignInFragment() {
         // Required empty public constructor
@@ -56,8 +64,14 @@ public class SignInFragment extends BaseFragment implements SignInController {
         SignInFragment.fragmentTitle = fragmentTitle;
     }
 
+    @OnClick(R.id.btn_email_sign_in)
+    public void onEmailSigninButtonClicked() {
+        authenticate();
+    }
+
     @Override
     public void authenticate() {
-
+        startActivity(new Intent(getActivity(), MainActivity.class));
+        getActivity().finish();
     }
 }
