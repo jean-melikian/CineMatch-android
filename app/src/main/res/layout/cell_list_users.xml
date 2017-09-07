@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        app:cardCornerRadius="2dp"
+        app:cardElevation="3dp"
+        app:cardPreventCornerOverlap="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/usersList_image"/>
+            <TextView
+                android:id="@+id/usersList_title"
+                android:layout_width="100dp"
+                android:layout_height="25dp"
+                android:layout_toRightOf="@+id/usersList_image"
+                android:text="TITLE"
+                android:textColor="@color/colorPrimary"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/usersList_date"
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/usersList_title"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="DATE"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                android:layout_marginRight="5dp"
+                android:layout_marginEnd="5dp"
+                />
+            <TextView
+                android:id="@+id/usersList_genres"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="6dp"
+                android:layout_marginLeft="12dp"
+                android:padding="3dp"
+                android:layout_below="@+id/usersList_title"
+                android:layout_toRightOf="@+id/usersList_image"
+                android:layout_alignStart="@+id/usersList_title"
+                android:layout_alignLeft="@+id/usersList_title"
+                android:text="Genres"
+                android:textSize="12dp" />
+            <Button
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/usersList_genres"
+                android:background="@color/colorPrimary"
+                android:text="+"
+                android:textColor="@android:color/white"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>
