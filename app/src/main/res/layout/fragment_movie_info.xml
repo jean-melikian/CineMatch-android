@@ -58,7 +58,8 @@
                 android:layout_height="150dp"
                 android:layout_below="@+id/movieInfo_synopsisLabel"
                 android:id="@+id/movieInfo_synopsisInput"
-                android:layout_marginTop="15dp"/>
+                android:layout_marginTop="15dp"
+                android:maxLines="10"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -22,6 +22,7 @@ public class MovieInfoFragment extends Fragment {
     TextView genres;
     TextView synopsis;
     Button addWatch;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
