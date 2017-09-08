@@ -1,4 +1,4 @@
-package com.cinematching.application.objects;
+package com.cinematching.application.models;
 
 import java.util.Date;
 
