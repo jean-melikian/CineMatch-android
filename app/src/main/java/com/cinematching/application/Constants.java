@@ -5,7 +5,7 @@ package com.cinematching.application;
  */
 
 public class Constants {
-    public static final String BASE_URL = (BuildConfig.DEBUG) ? "" : "";
+    public static final String BASE_URL = "http://137.74.192.134/app.php";
     public static final String AUTH_TOKEN_PREFIX = "Bearer";
 
 }

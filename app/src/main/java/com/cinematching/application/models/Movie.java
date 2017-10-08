@@ -1,6 +1,7 @@
 package com.cinematching.application.models;
 
-import java.util.Date;
+import android.net.Uri;
+
 
 /**
  * Created by Jean-Christophe Melikian on 07/09/2017.
@@ -12,9 +13,9 @@ public class Movie {
 
     private String name;
 
-    private String imageUrl;
+    private Uri imageUrl;
 
-    private Date releaseDate;
+    private String releaseDate;
 
     private String synopsis;
 
@@ -34,19 +35,19 @@ public class Movie {
         this.name = name;
     }
 
-    public String getImageUrl() {
+    public Uri getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public void setImageUrl(Uri imageUrl) {
         this.imageUrl = imageUrl;
     }
 
-    public Date getReleaseDate() {
+    public String getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(Date releaseDate) {
+    public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
 

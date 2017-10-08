@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.cinematching.application.R;
 import com.cinematching.application.controllers.fragments.BaseFragment;
+import com.cinematching.application.models.Movie;
 
 /**
  * Created by meryl on 07/09/2017.
@@ -24,6 +25,8 @@ public class MovieInfoFragment extends BaseFragment {
     TextView synopsis;
     Button addWatch;
 
+    private Movie movie;
+
     public MovieInfoFragment() {
 
     }
@@ -36,7 +39,6 @@ public class MovieInfoFragment extends BaseFragment {
         image = (ImageView) view.findViewById(R.id.movieInfo_image);
         title = (TextView) view.findViewById(R.id.movieInfo_title);
         date = (TextView) view.findViewById(R.id.movieInfo_date);
-        genres = (TextView) view.findViewById(R.id.movieInfo_genres);
         synopsis = (TextView) view.findViewById(R.id.movieInfo_synopsisInput);
         addWatch = (Button) view.findViewById(R.id.movieInfo_addButton);
 
@@ -45,6 +47,10 @@ public class MovieInfoFragment extends BaseFragment {
     }
 
     private void initView() {
+        title.setText(movie.getName());
+        image.setImageURI(movie.getImageUrl());
+        date.setText(movie.getReleaseDate());
+        synopsis.setText(movie.getSynopsis());
     }
 
     @Override

@@ -3,7 +3,9 @@ package com.cinematching.application.controllers;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -17,6 +19,7 @@ import android.widget.LinearLayout;
 import com.cinematching.application.R;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 import com.cinematching.application.controllers.fragments.main.MovieInfoFragment;
+import com.cinematching.application.controllers.fragments.main.MovieListFragment;
 import com.cinematching.application.controllers.fragments.main.UserParamsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -108,5 +111,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    public void displayListMovies(){
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment fragment = MovieListFragment.newInstance();
+        FragmentTransaction transaction = fm.beginTransaction();
+        transaction.replace(R.id.main_content, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
