@@ -1,5 +1,12 @@
 package com.cinematching.application.models;
 
+import android.support.annotation.Nullable;
+
+import com.google.gson.annotations.SerializedName;
+
+import org.joda.time.DateTime;
+import org.joda.time.Years;
+
 import java.util.Date;
 
 /**
@@ -8,16 +15,55 @@ import java.util.Date;
 
 public class User {
 
+    private Integer id;
+    @SerializedName("username")
     private String nickname;
+
     private String firstname;
     private String lastname;
+    @Nullable
     private String city;
+    @Nullable
     private String country;
+    @Nullable
     private Date birthdate;
+    @Nullable
     private String zipcode;
     private String email;
-    private int note;
+    @Exclude
+    @Nullable
+    private Integer note;
+    @Nullable
     private String contact;
+    @Exclude
+    @Nullable
+    private Integer age;
+
+    public User() {
+    }
+
+
+    public User(Integer id, String nickname, String firstname, String lastname, @Nullable String city, @Nullable String country, @Nullable Date birthdate, @Nullable String zipcode, String email, @Nullable String contact) {
+        this.id = id;
+        this.nickname = nickname;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.city = city;
+        this.country = country;
+        this.birthdate = birthdate;
+        this.zipcode = zipcode;
+        this.email = email;
+        this.contact = contact;
+        this.setAge();
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNickname() {
         return nickname;
@@ -43,35 +89,39 @@ public class User {
         this.lastname = lastname;
     }
 
+    @Nullable
     public String getCity() {
         return city;
     }
 
-    public void setCity(String city) {
+    public void setCity(@Nullable String city) {
         this.city = city;
     }
 
+    @Nullable
     public String getCountry() {
         return country;
     }
 
-    public void setCountry(String country) {
+    public void setCountry(@Nullable String country) {
         this.country = country;
     }
 
+    @Nullable
     public Date getBirthdate() {
         return birthdate;
     }
 
-    public void setBirthdate(Date birthdate) {
+    public void setBirthdate(@Nullable Date birthdate) {
         this.birthdate = birthdate;
     }
 
+    @Nullable
     public String getZipcode() {
         return zipcode;
     }
 
-    public void setZipcode(String zipcode) {
+    public void setZipcode(@Nullable String zipcode) {
         this.zipcode = zipcode;
     }
 
@@ -83,19 +133,51 @@ public class User {
         this.email = email;
     }
 
-    public int getNote() {
+    @Nullable
+    public Integer getNote() {
         return note;
     }
 
-    public void setNote(int note) {
+    public void setNote(@Nullable Integer note) {
         this.note = note;
     }
 
+    @Nullable
     public String getContact() {
         return contact;
     }
 
-    public void setContact(String contact) {
+    public void setContact(@Nullable String contact) {
         this.contact = contact;
+    }
+
+    public Integer getAge() {
+        return this.age;
+    }
+
+    private void setAge() {
+        if (birthdate != null) {
+            this.age = Years.yearsBetween(new DateTime(this.getBirthdate()), DateTime.now()).getYears();
+        } else {
+            this.age = 0;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", birthdate=" + birthdate +
+                ", zipcode='" + zipcode + '\'' +
+                ", email='" + email + '\'' +
+                ", note=" + note +
+                ", contact='" + contact + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
