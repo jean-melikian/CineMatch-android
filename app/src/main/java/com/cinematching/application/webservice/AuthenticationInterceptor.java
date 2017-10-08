@@ -3,6 +3,7 @@ package com.cinematching.application.webservice;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.cinematching.application.BuildConfig;
 import com.cinematching.application.Constants;
 
 import java.io.IOException;
@@ -31,7 +32,9 @@ public class AuthenticationInterceptor implements Interceptor {
                 .header("Authorization", token);
 
         Request request = builder.build();
-        Log.d("Interceptor", String.format("Request: [%s]", request.toString()));
+        if (BuildConfig.DEBUG) {
+            Log.d("Interceptor", String.format("Request: [%s]", request.toString()));
+        }
         return chain.proceed(request);
     }
 

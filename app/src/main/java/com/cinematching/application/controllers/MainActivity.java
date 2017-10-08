@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import com.cinematching.application.R;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 import com.cinematching.application.controllers.fragments.main.MovieInfoFragment;
+import com.cinematching.application.controllers.fragments.main.RecentUsersFragment;
 import com.cinematching.application.controllers.fragments.main.UserParamsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -47,13 +48,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragment = new MovieInfoFragment();
         fm.beginTransaction().replace(R.id.main_content, fragment).commit();
 
-        navHeaderProfile = (LinearLayout) navigationView.getHeaderView(0).findViewById(R.id.nav_header_profile);
+        initNavHeaderProfile();
+    }
 
+    private void initNavHeaderProfile() {
+        if (navHeaderProfile == null) {
+            navHeaderProfile = (LinearLayout) navigationView.getHeaderView(0).findViewById(R.id.nav_header_profile);
+        }
         navHeaderProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 fragment = new UserParamsFragment();
-                fm.beginTransaction().replace(R.id.main_content, fragment).commit();
+                showFragment();
                 drawer.closeDrawer(GravityCompat.START);
             }
         });
@@ -99,14 +105,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             fragment = new MovieInfoFragment();
         } else if (id == R.id.nav_search) {
         } else if (id == R.id.nav_recents) {
+            fragment = new RecentUsersFragment();
         } else if (id == R.id.nav_favorites) {
         } else if (id == R.id.nav_share) {
         } else if (id == R.id.nav_about_us) {
         }
 
-        fm.beginTransaction().replace(R.id.main_content, fragment, fragment.getTag()).addToBackStack(null).commit();
+        showFragment();
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void showFragment() {
+        fm.beginTransaction().replace(R.id.main_content, fragment, fragment.getTag()).addToBackStack(fragment.getTag()).commit();
+        setTitle(fragment.getFragmentTitle());
     }
 }

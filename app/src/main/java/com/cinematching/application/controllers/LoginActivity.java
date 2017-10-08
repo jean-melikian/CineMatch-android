@@ -1,5 +1,7 @@
 package com.cinematching.application.controllers;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -12,6 +14,7 @@ import com.cinematching.application.R;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 import com.cinematching.application.controllers.fragments.login.SignInFragment;
 import com.cinematching.application.controllers.fragments.login.SignUpFragment;
+import com.cinematching.application.webservice.ServiceGenerator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,6 +43,9 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+//        validateAuthentication();
+
         setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
@@ -55,6 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
         tabLayout.setupWithViewPager(mViewPager);
+    }
+
+    public void validateAuthentication() {
+        String authToken = getSharedPreferences("authorization", Context.MODE_PRIVATE).getString("authToken", null);
+        if (authToken != null && !authToken.isEmpty()) {
+            ServiceGenerator.injectToken(authToken);
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
     }
 
     /**

@@ -39,6 +39,7 @@ public class UserParamsFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_user_params, container, false);
+        setFragmentTitle(fragmentTitle);
 
         image = (ImageView) view.findViewById(R.id.userParams_image);
         uploadImage = (Button) view.findViewById(R.id.userParams_uploadImage);

@@ -1,5 +1,7 @@
 package com.cinematching.application.webservice.api.retrofit;
 
+import com.cinematching.application.models.Authorization;
+import com.cinematching.application.models.Credentials;
 import com.cinematching.application.models.User;
 
 import retrofit2.Call;
@@ -14,9 +16,15 @@ import retrofit2.http.Path;
 
 public interface UserRetrofit {
 
+    @POST("oauth/v2/token")
+    Call<Authorization> authenticate(@Body Credentials credentials);
+
     @POST("api/users")
     Call<String> create(@Body User user);
 
-    @GET("api/users/{path}")
-    Call<User> read(@Path(value = "path", encoded = true) String path);
+    @GET("api/users")
+    Call<UsersListResponse> read();
+
+    @GET("api/users/{id}")
+    Call<User> readById(@Path(value = "id", encoded = true) String id);
 }
