@@ -9,9 +9,9 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/movieInfo_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/movieInfo_image"/>
+            android:layout_height="200dp" />
 
         <RelativeLayout
             android:id="@+id/movieInfo_labels"
@@ -22,9 +22,9 @@
                 android:id="@+id/movieInfo_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
                 android:gravity="center"
-                android:textColor="@color/colorPrimary"
+                android:text="Title"
+                android:textColor="@color/colorAccent"
                 android:textSize="38sp" />
 
 
@@ -34,8 +34,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/movieInfo_title"
                 android:paddingTop="15dp"
-                android:textSize="19dp"
-                android:text="Date" />
+                android:text="Date"
+                android:textSize="19dp" />
 
 
             <TextView
@@ -47,26 +47,26 @@
                 android:text="Genres" />
 
             <TextView
+                android:id="@+id/movieInfo_synopsisLabel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/movieInfo_genres"
-                android:id="@+id/movieInfo_synopsisLabel"
                 android:layout_marginTop="15dp"
                 android:text="Synopsis :"/>
             <TextView
+                android:id="@+id/movieInfo_synopsisInput"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_below="@+id/movieInfo_synopsisLabel"
-                android:id="@+id/movieInfo_synopsisInput"
                 android:layout_marginTop="15dp"
                 android:maxLines="10"/>
             <Button
+                android:id="@+id/movieInfo_addButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/movieInfo_addButton"
                 android:layout_below="@+id/movieInfo_synopsisInput"
-                android:text="Add to Watchlist"
                 android:background="@android:color/holo_green_light"
+                android:text="Add to Watchlist"
                 android:textColor="@android:color/white"/>
         </RelativeLayout>
     </LinearLayout>

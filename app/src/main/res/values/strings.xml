@@ -30,4 +30,17 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_nickname">Nickname</string>
+    <string name="nav_header_email">android.studio@android.com</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_screening">Screening</string>
+    <string name="menu_others">Others</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_about_us">Send</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_movies">Movies</string>
+    <string name="menu_contacts">Contacts</string>
+    <string name="menu_recents">Recents</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="desc_user_params_image">Your profile picture</string>
 </resources>

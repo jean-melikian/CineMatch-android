@@ -15,9 +15,8 @@ import com.cinematching.application.controllers.fragments.login.SignUpFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
-public class LoginActivity extends AppCompatActivity implements LoginController {
+public class LoginActivity extends AppCompatActivity {
 
     private static final int TABS_NUMBER = 2;
     /**
@@ -37,14 +36,13 @@ public class LoginActivity extends AppCompatActivity implements LoginController 
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    private Unbinder unbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        unbinder = ButterKnife.bind(this);
+        ButterKnife.bind(this);
 
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.

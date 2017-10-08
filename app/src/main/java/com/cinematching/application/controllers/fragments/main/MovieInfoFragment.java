@@ -1,7 +1,6 @@
-package com.cinematching.application.controllers.fragments.movie;
+package com.cinematching.application.controllers.fragments.main;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,12 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cinematching.application.R;
+import com.cinematching.application.controllers.fragments.BaseFragment;
 
 /**
  * Created by meryl on 07/09/2017.
  */
 
-public class MovieInfoFragment extends Fragment {
+public class MovieInfoFragment extends BaseFragment {
+    private static String fragmentTitle = "Movie details";
     ImageView image;
     TextView title;
     TextView date;
@@ -23,10 +24,14 @@ public class MovieInfoFragment extends Fragment {
     TextView synopsis;
     Button addWatch;
 
+    public MovieInfoFragment() {
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_infos, container, false);
+        View view = inflater.inflate(R.layout.fragment_movie_info, container, false);
 
         image = (ImageView) view.findViewById(R.id.movieInfo_image);
         title = (TextView) view.findViewById(R.id.movieInfo_title);
@@ -39,10 +44,16 @@ public class MovieInfoFragment extends Fragment {
         return view;
     }
 
-    public MovieInfoFragment(){
-
+    private void initView() {
     }
 
-    private void initView(){
+    @Override
+    public String getFragmentTitle() {
+        return fragmentTitle;
+    }
+
+    @Override
+    public void setFragmentTitle(String fragmentTitle) {
+        MovieInfoFragment.fragmentTitle = fragmentTitle;
     }
 }

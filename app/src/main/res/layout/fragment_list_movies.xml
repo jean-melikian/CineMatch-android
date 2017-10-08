@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
-    tools:context="com.cinematching.application.controllers.fragments.user.UserParamsFragment">
+    tools:context="com.cinematching.application.controllers.fragments.main.UserParamsFragment">
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/moviesList_recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/moviesList_recyclerView">
+        android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
 </FrameLayout>

@@ -4,7 +4,6 @@ package com.cinematching.application.controllers.fragments.login;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,23 +25,20 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 
 /**
- * A simple {@link Fragment} subclass.
+ * A simple {@link #Fragment} subclass.
  */
 public class SignUpFragment extends BaseFragment implements SignUpController {
 
+    private static final int APP_MINIMUM_AGE = 18;
     private static String fragmentTitle = "Sign up";
-    private Calendar birthdate;
-
     @BindView(R.id.field_birthdate)
     EditText fieldBirthdate;
 
     @BindView(R.id.btn_email_sign_up)
     Button buttonEmailSignUp;
-
+    private Calendar birthdate;
     private DatePickerDialog.OnDateSetListener dateSetListener;
-
     private Unbinder unbinder;
-    private static final int APP_MINIMUM_AGE = 18;
 
     public SignUpFragment() {
         // Required empty public constructor
@@ -71,8 +67,8 @@ public class SignUpFragment extends BaseFragment implements SignUpController {
                 updateBirthdateField();
             }
         };
+
         fieldBirthdate.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View view) {
                 new DatePickerDialog(getActivity(), dateSetListener, birthdate.get(Calendar.YEAR), birthdate.get(Calendar.MONTH),
                         birthdate.get(Calendar.DAY_OF_MONTH)).show();

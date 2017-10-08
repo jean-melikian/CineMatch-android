@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/activity_horizontal_margin"
-    tools:context="com.cinematching.application.controllers.fragments.user.UserInfoFragment">
+    tools:context="com.cinematching.application.controllers.fragments.main.UserInfoFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -11,9 +11,9 @@
         android:orientation="vertical">
 
         <android.support.v7.widget.AppCompatImageView
+            android:id="@+id/userInfo_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:id="@+id/userInfo_image"/>
+            android:layout_height="200dp" />
 
         <RelativeLayout
             android:id="@+id/userInfo_labels"
@@ -93,10 +93,10 @@
         </RelativeLayout>
 
         <android.support.v7.widget.RecyclerView
+            android:id="@+id/userInfo_moviesList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="15dp"
-            android:id="@+id/userInfo_moviesList">
+            android:paddingTop="15dp">
 
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>

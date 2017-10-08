@@ -1,8 +1,7 @@
-package com.cinematching.application.controllers.fragments.user;
+package com.cinematching.application.controllers.fragments.main;
 
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cinematching.application.R;
+import com.cinematching.application.controllers.fragments.BaseFragment;
 
 /**
  * Created by meryl on 06/09/2017.
  */
 
-public class UserInfoFragment extends Fragment {
+public class UserInfoFragment extends BaseFragment {
+    private static String fragmentTitle = "User details";
     ImageView image;
     TextView nickname;
     TextView note;
@@ -26,8 +27,11 @@ public class UserInfoFragment extends Fragment {
     TextView city;
     TextView zipcode;
     TextView contact;
-
     RecyclerView userMoviesList;
+
+    public UserInfoFragment() {
+
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,10 +54,16 @@ public class UserInfoFragment extends Fragment {
         return view;
     }
 
-    public UserInfoFragment(){
-
+    private void initView() {
     }
 
-    private void initView(){
+    @Override
+    public String getFragmentTitle() {
+        return fragmentTitle;
+    }
+
+    @Override
+    public void setFragmentTitle(String fragmentTitle) {
+        UserInfoFragment.fragmentTitle = fragmentTitle;
     }
 }

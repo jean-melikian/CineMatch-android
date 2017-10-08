@@ -1,7 +1,6 @@
-package com.cinematching.application.controllers.fragments.user;
+package com.cinematching.application.controllers.fragments.main;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,13 +9,15 @@ import android.widget.EditText;
 import android.widget.ImageView;
 
 import com.cinematching.application.R;
+import com.cinematching.application.controllers.fragments.BaseFragment;
 
 /**
  * Created by meryl on 07/09/2017.
  */
 
-public class UserParamsFragment extends Fragment {
+public class UserParamsFragment extends BaseFragment {
 
+    private static String fragmentTitle = "Edit profile";
     ImageView image;
     Button uploadImage;
     Button password;
@@ -30,10 +31,14 @@ public class UserParamsFragment extends Fragment {
     Button back;
     Button save;
 
+    public UserParamsFragment() {
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_user_infos, container, false);
+        View view = inflater.inflate(R.layout.fragment_user_params, container, false);
 
         image = (ImageView) view.findViewById(R.id.userParams_image);
         uploadImage = (Button) view.findViewById(R.id.userParams_uploadImage);
@@ -51,8 +56,15 @@ public class UserParamsFragment extends Fragment {
         return view;
     }
 
-    public UserParamsFragment(){
-
+    @Override
+    public String getFragmentTitle() {
+        return fragmentTitle;
     }
+
+    @Override
+    public void setFragmentTitle(String fragmentTitle) {
+        UserParamsFragment.fragmentTitle = fragmentTitle;
+    }
+
 
 }
