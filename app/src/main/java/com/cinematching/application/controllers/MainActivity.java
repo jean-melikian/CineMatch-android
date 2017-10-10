@@ -18,7 +18,6 @@ import android.widget.LinearLayout;
 import com.cinematching.application.R;
 import com.cinematching.application.SessionData;
 import com.cinematching.application.controllers.fragments.BaseFragment;
-import com.cinematching.application.controllers.fragments.main.MovieInfoFragment;
 import com.cinematching.application.controllers.fragments.main.MovieListFragment;
 import com.cinematching.application.controllers.fragments.main.RecentUsersFragment;
 import com.cinematching.application.controllers.fragments.main.UserParamsFragment;
@@ -48,8 +47,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        fragment = new MovieInfoFragment();
-        fm.beginTransaction().replace(R.id.main_content, fragment).commit();
+        fragment = new MovieListFragment();
+        showFragment();
 
         initNavHeaderProfile();
     }
@@ -128,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void showFragment() {
-        fm.beginTransaction().replace(R.id.main_content, fragment, fragment.getTag()).addToBackStack(fragment.getTag()).commit();
+        fm.beginTransaction().replace(R.id.main_content, fragment, fragment.getTag()).commit();
         setTitle(fragment.getFragmentTitle());
     }
 }
