@@ -26,6 +26,8 @@ import com.cinematching.application.webservice.ServiceResult;
 import com.cinematching.application.webservice.api.retrofit.UserService;
 import com.cinematching.application.webservice.errors.ServiceExceptionType;
 
+import org.joda.time.DateTime;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -116,7 +118,11 @@ public class SignInFragment extends BaseFragment implements SignInController {
                 @Override
                 public void onResult(ServiceResult<Authorization> result) {
                     if (result.getData() != null) {
-                        sp.edit().putString("authToken", result.getData().getToken()).commit();
+                        sp.edit().putString("auth_token", result.getData().getToken()).commit();
+
+                        String expirationTime = DateTime.now().plusSeconds(result.getData().getTokenValidityInSeconds()).toString();
+
+                        sp.edit().putString("expiration_time", expirationTime).commit();
 
                         boolean isAuth = ((CineMatchApp) getActivity().getApplicationContext()).validateAuthentication();
                         if (isAuth) {

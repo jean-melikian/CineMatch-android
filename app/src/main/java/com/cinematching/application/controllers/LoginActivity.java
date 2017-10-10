@@ -44,7 +44,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-//        validateAuthentication();
+        if (ServiceGenerator.hasAuthorization()) {
+            startActivity(new Intent(this, MainActivity.class));
+            finish();
+        }
 
         setContentView(R.layout.activity_login);
 

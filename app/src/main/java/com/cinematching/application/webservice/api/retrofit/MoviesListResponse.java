@@ -35,14 +35,14 @@ public class MoviesListResponse {
         @SerializedName("overview")
         String overview;
         @SerializedName("release_date")
-        List<String> releaseDate;
+        ArrayList<String> releaseDate;
         @SerializedName("genres")
         List<String> genres;
 
         public MoviesResponse() {
         }
 
-        public MoviesResponse(int id, String title, String overview, List<String> releaseDate, List<String> genres) {
+        public MoviesResponse(int id, String title, String overview, ArrayList<String> releaseDate, List<String> genres) {
             this.id = id;
             this.title = title;
             this.releaseDate = releaseDate;
@@ -73,11 +73,11 @@ public class MoviesListResponse {
             this.overview = overview;
         }
 
-        public List<String> getReleaseDate(){
+        public ArrayList<String> getReleaseDate(){
             return releaseDate;
         }
 
-        public void setReleaseDate(List<String> releaseDate){
+        public void setReleaseDate(ArrayList<String> releaseDate){
             this.releaseDate = releaseDate;
         }
 

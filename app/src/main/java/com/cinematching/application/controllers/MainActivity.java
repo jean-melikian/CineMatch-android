@@ -19,8 +19,8 @@ import android.widget.LinearLayout;
 import com.cinematching.application.R;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 import com.cinematching.application.controllers.fragments.main.MovieInfoFragment;
-import com.cinematching.application.controllers.fragments.main.MovieListFragment;
 import com.cinematching.application.controllers.fragments.main.RecentUsersFragment;
+import com.cinematching.application.controllers.fragments.main.MovieListFragment;
 import com.cinematching.application.controllers.fragments.main.UserParamsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -119,14 +119,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    /*public void displayListMovies() {
-        FragmentManager fm = getSupportFragmentManager();
-        Fragment fragment = MovieListFragment.newInstance();
-        FragmentTransaction transaction = fm.beginTransaction();
-        transaction.replace(R.id.main_content, fragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
-    }*/
+
     public void showFragment() {
         fm.beginTransaction().replace(R.id.main_content, fragment, fragment.getTag()).addToBackStack(fragment.getTag()).commit();
         setTitle(fragment.getFragmentTitle());

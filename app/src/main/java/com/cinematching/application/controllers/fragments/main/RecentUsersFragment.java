@@ -17,6 +17,7 @@ import com.cinematching.application.webservice.IServiceResultListener;
 import com.cinematching.application.webservice.ServiceResult;
 import com.cinematching.application.webservice.api.retrofit.UserService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

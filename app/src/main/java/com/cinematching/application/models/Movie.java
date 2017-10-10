@@ -2,6 +2,9 @@ package com.cinematching.application.models;
 
 import android.net.Uri;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Jean-Christophe Melikian on 07/09/2017.
@@ -15,7 +18,7 @@ public class Movie {
 
     private Uri imageUrl;
 
-    private String releaseDate;
+    private ArrayList<String> releaseDate;
 
     private String synopsis;
 
@@ -43,11 +46,11 @@ public class Movie {
         this.imageUrl = imageUrl;
     }
 
-    public String getReleaseDate() {
+    public ArrayList<String> getReleaseDate() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(ArrayList<String> releaseDate) {
         this.releaseDate = releaseDate;
     }
 

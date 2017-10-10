@@ -4,6 +4,8 @@ import com.cinematching.application.models.Authorization;
 import com.cinematching.application.models.Credentials;
 import com.cinematching.application.models.User;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -23,7 +25,7 @@ public interface UserRetrofit {
     Call<String> create(@Body User user);
 
     @GET("api/users")
-    Call<UsersListResponse> read();
+    Call<List<UserApiResponse>> read();
 
     @GET("api/users/{id}")
     Call<User> readById(@Path(value = "id", encoded = true) String id);

@@ -62,9 +62,11 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
 
     @Override
     public void onBindViewHolder(MoviesListAdapter.ViewHolder holder, int position) {
+
         Movie movie = movies.get(position);
+        ArrayList<String> date = movie.getReleaseDate();
         holder.movieCellTitle.setText(movie.getName());
-        holder.movieCellDate.setText(movie.getReleaseDate());
+        holder.movieCellDate.setText(date.get(0));
         holder.movieCellImage.setImageURI(movie.getImageUrl());
     }
 

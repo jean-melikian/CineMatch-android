@@ -104,35 +104,45 @@ public class UserService implements IUserService {
 
     @Override
     public void read(IServiceResultListener<List<User>> resultListener) {
-        Call<UsersListResponse> call = getUserRetrofit().read();
+        Call<List<UserApiResponse>> call = getUserRetrofit().read();
         ServiceResult<List<User>> result = new ServiceResult<>();
 
-        call.enqueue(new Callback<UsersListResponse>() {
+        call.enqueue(new Callback<List<UserApiResponse>>() {
             @Override
-            public void onResponse(@NonNull Call<UsersListResponse> call, @NonNull Response<UsersListResponse> response) {
+            public void onResponse(@NonNull Call<List<UserApiResponse>> call, @NonNull Response<List<UserApiResponse>> response) {
                 if (response.isSuccessful()) {
+
                     List<User> usersList = new ArrayList<User>();
+
                     if (response.body() != null) {
-                        for (UsersListResponse.UserResponse entry : response.body().getUsersResponse()) {
-                            readById(String.valueOf(entry.getId()), new IServiceResultListener<User>() {
-                                @Override
-                                public void onResult(ServiceResult<User> result) {
-                                    if (result.getData() != null) {
-                                        usersList.add(result.getData());
+                        Log.d("Users", "Success ! List size: " + response.body().size());
+                        List<UserApiResponse> apiResponse = response.body();
+                        if (apiResponse != null) {
+                            for (int i = 0; i < apiResponse.size(); i++) {
+                                int finalI = i;
+                                readById(String.valueOf(apiResponse.get(i).getId()), new IServiceResultListener<User>() {
+                                    @Override
+                                    public void onResult(ServiceResult<User> innerResult) {
+                                        if (innerResult.getData() != null) {
+                                            usersList.add(innerResult.getData());
+                                        }
+                                        if (finalI == apiResponse.size() - 1) {
+                                            if (resultListener != null) {
+                                                result.setData(usersList);
+                                                resultListener.onResult(result);
+                                            }
+                                        }
                                     }
-                                }
-                            });
+                                });
+
+                            }
                         }
                     }
-                    result.setData(usersList);
-                }
-                if (resultListener != null) {
-                    resultListener.onResult(result);
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<UsersListResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<UserApiResponse>> call, @NonNull Throwable t) {
                 result.setError(new ServiceException(t, ServiceExceptionType.UNKNOWN));
 
                 if (resultListener != null) {
@@ -154,6 +164,9 @@ public class UserService implements IUserService {
             public void onResponse(@NonNull Call<User> call, @NonNull Response<User> response) {
                 if (response.isSuccessful()) {
                     result.setData(response.body());
+                    Log.d("ReadById", "onResponse -> deserialize: " + response.body().toString());
+                } else {
+                    Log.e("ReadById", "onResponse -> unknown error");
                 }
                 if (resultListener != null) {
                     resultListener.onResult(result);
@@ -162,6 +175,7 @@ public class UserService implements IUserService {
 
             @Override
             public void onFailure(@NonNull Call<User> call, @NonNull Throwable t) {
+                Log.e("ReadById", "onFailure");
                 result.setError(new ServiceException(t, ServiceExceptionType.UNKNOWN));
 
                 if (resultListener != null) {

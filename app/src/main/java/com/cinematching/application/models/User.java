@@ -42,7 +42,8 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String nickname, String firstname, String lastname, @Nullable String city, @Nullable String country, @Nullable Date birthdate, @Nullable String zipcode, String email, @Nullable Integer note, @Nullable String contact) {
+
+    public User(Integer id, String nickname, String firstname, String lastname, @Nullable String city, @Nullable String country, @Nullable Date birthdate, @Nullable String zipcode, String email, @Nullable String contact) {
         this.id = id;
         this.nickname = nickname;
         this.firstname = firstname;
@@ -52,7 +53,6 @@ public class User {
         this.birthdate = birthdate;
         this.zipcode = zipcode;
         this.email = email;
-        this.note = note;
         this.contact = contact;
         this.setAge();
     }
@@ -163,4 +163,21 @@ public class User {
         }
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", birthdate=" + birthdate +
+                ", zipcode='" + zipcode + '\'' +
+                ", email='" + email + '\'' +
+                ", note=" + note +
+                ", contact='" + contact + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }
