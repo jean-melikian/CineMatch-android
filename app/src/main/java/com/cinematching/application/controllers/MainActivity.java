@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.nav_movies) {
-            fragment = new MovieInfoFragment();
+            fragment = new MovieListFragment();
         } else if (id == R.id.nav_search) {
         } else if (id == R.id.nav_recents) {
             fragment = new RecentUsersFragment();

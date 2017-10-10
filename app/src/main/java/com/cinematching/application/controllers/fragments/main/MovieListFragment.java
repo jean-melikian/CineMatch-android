@@ -12,8 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cinematching.application.R;
+import com.cinematching.application.adapters.MoviesListAdapter;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 import com.cinematching.application.models.Movie;
+import com.cinematching.application.webservice.IServiceResultListener;
+import com.cinematching.application.webservice.ServiceResult;
+import com.cinematching.application.webservice.api.retrofit.MovieService;
 
 import java.util.List;
 
@@ -22,65 +26,51 @@ import java.util.List;
  */
 
 public class MovieListFragment extends BaseFragment {
-    private static String fragmentTitle = "Movie List";
-    List<Movie> movies;
-    RecyclerView recyclerView;
-    SwipeRefreshLayout swipeRefreshLayout;
 
+    private static String fragmentTitle = "Movie Screening List";
+    MovieService movieService;
+    private RecyclerView movieRecyclerView;
 
     public MovieListFragment() {
-
+        // Required empty public constructor
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_list_movies, container, false);
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.moviesList_recyclerView);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.moviesList_swipeRefresh);
+        setFragmentTitle(fragmentTitle);
 
-        initView();
-        return view;
-    }
+        movieRecyclerView = (RecyclerView) view.findViewById(R.id.moviesList_recyclerView);
 
-    private void initView() {
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        getMovies();
-        recyclerView.setLayoutManager(llm);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        movieService = new MovieService();
+
+        MoviesListAdapter moviesListAdapter = new MoviesListAdapter(getActivity(), null);
+
+        movieRecyclerView.setAdapter(moviesListAdapter);
+
+        movieRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        movieService.getScreening(new IServiceResultListener<List<Movie>>() {
             @Override
-            public void onRefresh() {
-                getMovies();
+            public void onResult(ServiceResult<List<Movie>> result) {
+                moviesListAdapter.setMovies(result.getData());
             }
         });
+
+        return view;
     }
 
     @Override
     public String getFragmentTitle() {
-        return fragmentTitle;
+        return MovieListFragment.fragmentTitle;
     }
 
     @Override
     public void setFragmentTitle(String fragmentTitle) {
         MovieListFragment.fragmentTitle = fragmentTitle;
-    }
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-
-    private void getMovies(){
-
-    }
-
-    public static MovieListFragment newInstance() {
-
-        Bundle args = new Bundle();
-
-        MovieListFragment fragment = new MovieListFragment();
-        fragment.setArguments(args);
-        return fragment;
     }
 }

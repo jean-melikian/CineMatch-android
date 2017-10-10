@@ -21,7 +21,6 @@ public class MovieInfoFragment extends BaseFragment {
     ImageView image;
     TextView title;
     TextView date;
-    TextView genres;
     TextView synopsis;
     Button addWatch;
 
@@ -47,10 +46,7 @@ public class MovieInfoFragment extends BaseFragment {
     }
 
     private void initView() {
-        title.setText(movie.getName());
-        image.setImageURI(movie.getImageUrl());
-        date.setText(movie.getReleaseDate());
-        synopsis.setText(movie.getSynopsis());
+
     }
 
     @Override
