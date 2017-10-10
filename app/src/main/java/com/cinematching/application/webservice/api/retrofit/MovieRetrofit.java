@@ -21,8 +21,8 @@ public interface MovieRetrofit {
     Call<Movie> read(@Path(value = "id", encoded = true) String id);
 
     @GET("api/movies/screening")
-    Call<MoviesListResponse> getSreening();
+    Call<List<MovieApiResponse>> getSreening();
 
     @GET("api/movies/upcomming")
-    Call<MoviesListResponse> getUpcomming();
+    Call<List<MovieApiResponse>> getUpcomming();
 }

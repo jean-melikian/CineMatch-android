@@ -2,8 +2,8 @@ package com.cinematching.application.webservice.api.retrofit;
 
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
-import com.cinematching.application.controllers.fragments.main.MovieListFragment;
 import com.cinematching.application.models.Movie;
 import com.cinematching.application.webservice.IServiceResultListener;
 import com.cinematching.application.webservice.ServiceGenerator;
@@ -66,35 +66,45 @@ public class MovieService implements IMovieService {
 
     @Override
     public void getScreening(IServiceResultListener<List<Movie>> resultListener){
-        Call<MoviesListResponse> call = getMovieRetrofit().getSreening();
+        Call<List<MovieApiResponse>> call = getMovieRetrofit().getSreening();
         ServiceResult<List<Movie>> result = new ServiceResult<>();
 
-        call.enqueue(new Callback<MoviesListResponse>() {
+        call.enqueue(new Callback<List<MovieApiResponse>>() {
             @Override
-            public void onResponse(@NonNull Call<MoviesListResponse> call, @NonNull Response<MoviesListResponse> response) {
+            public void onResponse(@NonNull Call<List<MovieApiResponse>> call, @NonNull Response<List<MovieApiResponse>> response) {
                 if (response.isSuccessful()) {
-                    List<Movie> movieList = new ArrayList<Movie>();
+
+                    List<Movie> usersList = new ArrayList<Movie>();
+
                     if (response.body() != null) {
-                        for (MoviesListResponse.MoviesResponse entry : response.body().getMoviesResponse()) {
-                            read(String.valueOf(entry.getId()), new IServiceResultListener<Movie>() {
-                                @Override
-                                public void onResult(ServiceResult<Movie> result) {
-                                    if (result.getData() != null) {
-                                        movieList.add(result.getData());
+                        Log.d("Movies", "Success ! List size: " + response.body().size());
+                        List<MovieApiResponse> apiResponse = response.body();
+                        if (apiResponse != null) {
+                            for (int i = 0; i < apiResponse.size(); i++) {
+                                int finalI = i;
+                                read(String.valueOf(apiResponse.get(i)), new IServiceResultListener<Movie>() {
+                                    @Override
+                                    public void onResult(ServiceResult<Movie> innerResult) {
+                                        if (innerResult.getData() != null) {
+                                            usersList.add(innerResult.getData());
+                                        }
+                                        if (finalI == apiResponse.size() - 1) {
+                                            if (resultListener != null) {
+                                                result.setData(usersList);
+                                                resultListener.onResult(result);
+                                            }
+                                        }
                                     }
-                                }
-                            });
+                                });
+
+                            }
                         }
                     }
-                    result.setData(movieList);
-                }
-                if (resultListener != null) {
-                    resultListener.onResult(result);
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<MoviesListResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<MovieApiResponse>> call, @NonNull Throwable t) {
                 result.setError(new ServiceException(t, ServiceExceptionType.UNKNOWN));
 
                 if (resultListener != null) {
@@ -102,40 +112,49 @@ public class MovieService implements IMovieService {
                 }
             }
         });
-
     }
 
     @Override
-    public  void getUpcomming(IServiceResultListener<List<Movie>> resultListener){
-        Call<MoviesListResponse> call = getMovieRetrofit().getUpcomming();
+    public  void getUpcomming(IServiceResultListener<List<Movie>> resultListener) {
+        Call<List<MovieApiResponse>> call = getMovieRetrofit().getUpcomming();
         ServiceResult<List<Movie>> result = new ServiceResult<>();
 
-        call.enqueue(new Callback<MoviesListResponse>() {
+        call.enqueue(new Callback<List<MovieApiResponse>>() {
             @Override
-            public void onResponse(@NonNull Call<MoviesListResponse> call, @NonNull Response<MoviesListResponse> response) {
+            public void onResponse(@NonNull Call<List<MovieApiResponse>> call, @NonNull Response<List<MovieApiResponse>> response) {
                 if (response.isSuccessful()) {
-                    List<Movie> movieList = new ArrayList<Movie>();
+
+                    List<Movie> usersList = new ArrayList<Movie>();
+
                     if (response.body() != null) {
-                        for (MoviesListResponse.MoviesResponse entry : response.body().getMoviesResponse()) {
-                            read(String.valueOf(entry.getId()), new IServiceResultListener<Movie>() {
-                                @Override
-                                public void onResult(ServiceResult<Movie> result) {
-                                    if (result.getData() != null) {
-                                        movieList.add(result.getData());
+                        Log.d("Movies", "Success ! List size: " + response.body().size());
+                        List<MovieApiResponse> apiResponse = response.body();
+                        if (apiResponse != null) {
+                            for (int i = 0; i < apiResponse.size(); i++) {
+                                int finalI = i;
+                                read(String.valueOf(apiResponse.get(i)), new IServiceResultListener<Movie>() {
+                                    @Override
+                                    public void onResult(ServiceResult<Movie> innerResult) {
+                                        if (innerResult.getData() != null) {
+                                            usersList.add(innerResult.getData());
+                                        }
+                                        if (finalI == apiResponse.size() - 1) {
+                                            if (resultListener != null) {
+                                                result.setData(usersList);
+                                                resultListener.onResult(result);
+                                            }
+                                        }
                                     }
-                                }
-                            });
+                                });
+
+                            }
                         }
                     }
-                    result.setData(movieList);
-                }
-                if (resultListener != null) {
-                    resultListener.onResult(result);
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<MoviesListResponse> call, @NonNull Throwable t) {
+            public void onFailure(@NonNull Call<List<MovieApiResponse>> call, @NonNull Throwable t) {
                 result.setError(new ServiceException(t, ServiceExceptionType.UNKNOWN));
 
                 if (resultListener != null) {
