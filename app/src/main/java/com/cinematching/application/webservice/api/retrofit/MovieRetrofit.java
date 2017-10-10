@@ -17,12 +17,12 @@ import retrofit2.http.Path;
 
 public interface MovieRetrofit {
 
-    @GET("api/movies/{path}")
-    Call<Movie> read(@Path(value = "path", encoded = true) String path);
+    @GET("api/movies/{id}")
+    Call<Movie> read(@Path(value = "id", encoded = true) String id);
 
     @GET("api/movies/screening")
-    Call<List<Movie>> getSreening();
+    Call<MoviesListResponse> getSreening();
 
     @GET("api/movies/upcomming")
-    Call<List<Movie>> getUpcomming();
+    Call<MoviesListResponse> getUpcomming();
 }

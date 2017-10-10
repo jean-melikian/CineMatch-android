@@ -3,6 +3,7 @@ package com.cinematching.application.webservice;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
+import com.cinematching.application.BuildConfig;
 import com.cinematching.application.Constants;
 import com.cinematching.application.models.Exclude;
 import com.google.gson.ExclusionStrategy;
@@ -11,6 +12,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
@@ -31,36 +33,53 @@ public class ServiceGenerator {
 
     private static OkHttpClient.Builder httpClientBuilder = new OkHttpClient.Builder();
 
-    private static AuthenticationInterceptor interceptor = null;
+    private static AuthenticationInterceptor authInterceptor = null;
+    private static HttpLoggingInterceptor logging = null;
 
     private static String token;
 
     private static boolean hasAuthorization;
+    private static boolean shouldInjectToken = false;
 
 
     public static Retrofit get() {
 
         if (token != null) {
-            if (interceptor == null) {
-                interceptor = new AuthenticationInterceptor(token);
-            }
+            if (shouldInjectToken) {
+                if (authInterceptor == null) {
+                    authInterceptor = new AuthenticationInterceptor(token);
+                }
 
-            if (!httpClientBuilder.interceptors().contains(interceptor)) {
-                httpClientBuilder.interceptors().add(interceptor);
-                Log.d("StimshopWebService", String.format("Added interceptor with token: %s", token));
-                hasAuthorization = true;
+                if (!httpClientBuilder.interceptors().contains(authInterceptor)) {
+                    httpClientBuilder.interceptors().add(authInterceptor);
+                    if (BuildConfig.DEBUG) {
+                        Log.d("WebService", String.format("Added authInterceptor with token: %s", token));
+                    }
+                    hasAuthorization = true;
+                }
             }
         } else {
             hasAuthorization = false;
-            Log.e("StimshopWebService", "Not authenticated, no token available...");
+            Log.d("WebService", "Not authenticated, no token available...");
         }
 
-        if (instance == null) {
+        if (instance == null || shouldInjectToken) {
 
             retrofitBuilder
                     .baseUrl(Constants.BASE_URL)
                     .addConverterFactory(ScalarsConverterFactory.create())
                     .addConverterFactory(GsonConverterFactory.create(getGson()));
+
+            if (BuildConfig.DEBUG) {
+                if (logging == null) {
+                    logging = new HttpLoggingInterceptor();
+                    logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+                }
+
+                if (!httpClientBuilder.interceptors().contains(logging)) {
+                    httpClientBuilder.addInterceptor(logging);
+                }
+            }
 
             httpClient = httpClientBuilder.build();
 
@@ -68,7 +87,14 @@ public class ServiceGenerator {
                     .client(httpClient)
                     .build();
         }
+        shouldInjectToken = false;
         return instance;
+    }
+
+    public static void injectToken(String token) {
+        ServiceGenerator.token = token;
+        shouldInjectToken = true;
+        get();
     }
 
 
@@ -90,6 +116,7 @@ public class ServiceGenerator {
     private static Gson getGson() {
         if (gson == null) {
             GsonBuilder builder = getDefaultGsonBuilder();
+            builder.excludeFieldsWithModifiers(java.lang.reflect.Modifier.TRANSIENT);
             gson = builder.create();
         }
         return gson;
@@ -123,5 +150,9 @@ public class ServiceGenerator {
         });
         defaultGsonBuilder.setDateFormat("yyyy-MM-dd");
         return defaultGsonBuilder;
+    }
+
+    public static boolean hasAuthorization() {
+        return hasAuthorization;
     }
 }
