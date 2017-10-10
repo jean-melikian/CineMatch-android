@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
@@ -16,14 +16,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <ImageView
+                android:id="@+id/moviesList_image"
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:id="@+id/moviesList_image"/>
+                android:src="@drawable/ic_ticket" />
             <TextView
                 android:id="@+id/moviesList_title"
-                android:layout_width="100dp"
-                android:layout_height="25dp"
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
                 android:layout_toRightOf="@+id/moviesList_image"
+                android:ellipsize="end"
+                android:lines="1"
+                android:maxLines="3"
                 android:text="Title"
                 android:textColor="@color/colorPrimary"
                 android:textSize="18dp" />
@@ -32,27 +36,30 @@
                 android:id="@+id/moviesList_date"
                 android:layout_width="60dp"
                 android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/moviesList_title"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:text="DATE"
-                android:gravity="end"
-                android:textAlignment="textEnd"
-                android:layout_marginRight="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_toRightOf="@+id/moviesList_title"
+                android:gravity="end"
+                android:text="DATE"
+                android:textAlignment="textEnd"
                 />
             <Button
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:id="@+id/moviesList_addButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:id="@+id/moviesList_addButton"
-                android:layout_below="@+id/moviesList_genres"
+                android:layout_below="@+id/moviesList_date"
+                android:layout_marginBottom="8dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="30dp"
                 android:background="@color/colorPrimary"
+                android:gravity="center"
                 android:text="+"
                 android:textColor="@android:color/white"
-                android:layout_marginTop="30dp"
-                android:layout_marginRight="5dp"/>
+                android:textSize="36sp" />
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

@@ -36,7 +36,7 @@
     <string name="menu_screening">Screening</string>
     <string name="menu_others">Others</string>
     <string name="menu_share">Share</string>
-    <string name="menu_about_us">Send</string>
+    <string name="menu_logout">Logout</string>
     <string name="menu_search">Search</string>
     <string name="menu_movies">Movies</string>
     <string name="menu_contacts">Contacts</string>

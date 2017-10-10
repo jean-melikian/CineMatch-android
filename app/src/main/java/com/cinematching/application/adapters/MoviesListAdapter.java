@@ -12,9 +12,14 @@ import android.widget.TextView;
 import com.cinematching.application.R;
 import com.cinematching.application.models.Movie;
 
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by meryl on 10/10/2017.
@@ -22,6 +27,8 @@ import java.util.List;
 
 public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.ViewHolder> {
 
+    DateTimeFormatter apiFmt = DateTimeFormat.forPattern("yyyy-MM-dd HH:mm:ss.SSSSSS").withLocale(Locale.getDefault());
+    DateTimeFormatter fmt = DateTimeFormat.forPattern("d MMMM yyyy").withLocale(Locale.getDefault());
     private Context mContext;
     private List<Movie> movies = new ArrayList<>();
 
@@ -55,18 +62,21 @@ public class MoviesListAdapter extends RecyclerView.Adapter<MoviesListAdapter.Vi
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View userCellView = inflater.inflate(R.layout.cell_list_movies, parent, false);
+        View movieCellView = inflater.inflate(R.layout.cell_list_movies, parent, false);
 
-        return new ViewHolder(userCellView);
+        return new ViewHolder(movieCellView);
     }
 
     @Override
     public void onBindViewHolder(MoviesListAdapter.ViewHolder holder, int position) {
 
         Movie movie = movies.get(position);
-        ArrayList<String> date = movie.getReleaseDate();
-        holder.movieCellTitle.setText(movie.getName());
-        holder.movieCellDate.setText(date.get(0));
+        holder.movieCellTitle.setText(movie.getTitle());
+
+        DateTime dateTime = DateTime.parse(movie.getReleaseDate().getDate(), apiFmt);
+        String date = dateTime.toString(fmt);
+
+        holder.movieCellDate.setText(date);
         holder.movieCellImage.setImageURI(movie.getImageUrl());
     }
 

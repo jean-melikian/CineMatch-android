@@ -15,8 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.cinematching.application.CineMatchApp;
 import com.cinematching.application.R;
+import com.cinematching.application.SessionData;
 import com.cinematching.application.controllers.MainActivity;
 import com.cinematching.application.controllers.fragments.BaseFragment;
 import com.cinematching.application.models.Authorization;
@@ -118,13 +118,11 @@ public class SignInFragment extends BaseFragment implements SignInController {
                 @Override
                 public void onResult(ServiceResult<Authorization> result) {
                     if (result.getData() != null) {
-                        sp.edit().putString("auth_token", result.getData().getToken()).commit();
+                        SessionData.get().setToken(result.getData().getToken());
+                        SessionData.get().setExpiration(DateTime.now().plusSeconds(result.getData().getTokenValidityInSeconds()));
 
-                        String expirationTime = DateTime.now().plusSeconds(result.getData().getTokenValidityInSeconds()).toString();
 
-                        sp.edit().putString("expiration_time", expirationTime).commit();
-
-                        boolean isAuth = ((CineMatchApp) getActivity().getApplicationContext()).validateAuthentication();
+                        boolean isAuth = SessionData.get().validateAuthentication();
                         if (isAuth) {
                             startActivity(new Intent(getActivity(), MainActivity.class));
                         }

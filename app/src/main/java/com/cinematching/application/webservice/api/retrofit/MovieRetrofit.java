@@ -6,9 +6,7 @@ import com.cinematching.application.models.Movie;
 import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.GET;
-import retrofit2.http.POST;
 import retrofit2.http.Path;
 
 /**
@@ -21,8 +19,8 @@ public interface MovieRetrofit {
     Call<Movie> read(@Path(value = "id", encoded = true) String id);
 
     @GET("api/movies/screening")
-    Call<List<MovieApiResponse>> getSreening();
+    Call<List<Movie>> getSreening();
 
     @GET("api/movies/upcomming")
-    Call<List<MovieApiResponse>> getUpcomming();
+    Call<List<Movie>> getUpcomming();
 }
